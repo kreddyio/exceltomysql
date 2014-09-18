@@ -32,7 +32,7 @@ def main():
 		if "xlsx" in filename:
 			name = filename.replace(".xlsx","")
 		else:
-			name = filename.replace(".xlsx","")
+			name = filename.replace(".xls","")
 	cu.execute("create database ",+name)
 	cu.execute("use "+name)
 	tab_str = "create table data" # Initial part of string while creating a table.
@@ -42,7 +42,7 @@ def main():
 	for y in xrange(0,col_num):
 		col.append(str(sheet.cell(0,y).value).replace(" ","").replace("'",""))
 		if y != (col_num - 1):
-			fields = fields + str(col[y])+" varchar(255)," # Data gets truncated automatically if more than 200 characters.
+			fields = fields + str(col[y])+" varchar(255)," # Data gets truncated automatically if more than 255 characters.
 			cols += str(col[y])+","		
 		else:
 			fields = fields + str(col[y])+" varchar(255))"
